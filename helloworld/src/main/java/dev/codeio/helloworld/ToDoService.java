@@ -2,6 +2,9 @@ package dev.codeio.helloworld;
 
 import dev.codeio.helloworld.Models.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,11 @@ public class ToDoService {
 
    public Todo getTodoById(Long id){
        return toDoRepository.findById(id).orElseThrow(()-> new RuntimeException("todo not found"));
+   }
+   
+   public Page<Todo> GetAllPagetodos(int page, int size){
+       Pageable pageable= PageRequest.of(page,size);
+       return toDoRepository.findAll(pageable);
    }
 
    public List<Todo> getTodos(){
