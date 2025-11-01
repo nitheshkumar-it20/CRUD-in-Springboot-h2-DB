@@ -3,13 +3,16 @@ package dev.codeio.helloworld.Models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 public class Todo {
     @Id
     @GeneratedValue
     Long id;
+    @NotNull
     String title;
+    @NotNull
     String Description;
     Boolean IsCompleted;
 

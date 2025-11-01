@@ -1,6 +1,8 @@
 package dev.codeio.helloworld;
 
 import dev.codeio.helloworld.Models.Todo;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,11 @@ public class TodoController {
     @Autowired
     private  ToDoService toDoService;
 
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200", description="Todos received "),
+            @ApiResponse(responseCode = "404", description ="Todo was not found")
+    }
+    )
     @GetMapping("/{id}")
     ResponseEntity<Todo> GetTodoById(@PathVariable long id){
         try {
